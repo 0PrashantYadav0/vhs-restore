@@ -21,6 +21,7 @@ def cmd_video(a):
     guard(a.input, a.output)
     dur, v, au = probe(a.input)
     if not v: raise SystemExit("no video stream found")
+    if not dur: raise SystemExit("can't read the video's length - remux it first: ffmpeg -i in -c copy fixed.mp4")
     vf = look_args(a, v, a.height)
     codec = video_codec(even(a.height * aspect_of(v, a.crop, a.aspect)), a.height)
     work = Path(str(a.output) + '.work'); work.mkdir(exist_ok=True)
