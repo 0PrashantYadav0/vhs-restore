@@ -4,13 +4,20 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vhs-restore"
-version = "0.1.0"
+version = "0.2.0"
 description = "Restore old videos (VHS, Hi8, Video8), their sound and old photos: remove buzz/hum/hiss, clean, recolour and upscale to 4K."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.9"
+authors = [{name = "0PrashantYadav0"}]
 dependencies = ["numpy"]
 keywords = ["vhs", "restoration", "upscale", "4k", "hum-removal", "ffmpeg", "digitization"]
+
+[project.optional-dependencies]
+ai = ["onnxruntime", "opencv-python-headless"]
+
+[project.urls]
+Homepage = "https://github.com/0PrashantYadav0/vhs-restore"
 
 [project.scripts]
 vhs-restore = "vhs_restore.cli:main"

@@ -1,0 +1,18 @@
+# Publishes to PyPI when a GitHub release is created. One-time setup on pypi.org: add a "trusted publisher"
+# (owner 0PrashantYadav0, repo vhs-restore, workflow publish.yml, environment pypi). No password or token needed.
+name: publish
+on:
+  release:
+    types: [published]
+jobs:
+  pypi:
+    runs-on: ubuntu-24.04
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install build && python -m build
+      - uses: pypa/gh-action-pypi-publish@release/v1
